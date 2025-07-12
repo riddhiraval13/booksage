@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookSage - Discover Your Next Great Read</title>
+    <link rel="stylesheet" href="book-suggestions.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <h1>BookSage</h1>
+                </div>
+                <p class="tagline">Discover your next favorite book</p>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search for books, authors, or genres..." 
+                        class="search-input"
+                        autocomplete="off"
+                    >
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="search-suggestions" id="searchSuggestions">
+                    <!-- Search suggestions will appear here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="genreFilter">Genre:</label>
+                    <select id="genreFilter" class="filter-select">
+                        <option value="">All Genres</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="mystery">Mystery & Thriller</option>
+                        <option value="romance">Romance</option>
+                        <option value="sci-fi">Science Fiction</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="biography">Biography</option>
+                        <option value="self-help">Self-Help</option>
+                        <option value="business">Business</option>
+                        <option value="history">History</option>
+                        <option value="philosophy">Philosophy</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="ratingFilter">Min Rating:</label>
+                    <select id="ratingFilter" class="filter-select">
+                        <option value="">Any Rating</option>
+                        <option value="4.5">4.5+ Stars</option>
+                        <option value="4.0">4.0+ Stars</option>
+                        <option value="3.5">3.5+ Stars</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy">Sort By:</label>
+                    <select id="sortBy" class="filter-select">
+                        <option value="title">Title</option>
+                        <option value="rating">Rating</option>
+                        <option value="year">Publication Year</option>
+                        <option value="popularity">Popularity</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Books Section -->
+        <section class="featured-section">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Featured Books
+            </h2>
+            <div class="featured-grid" id="featuredGrid">
+                <!-- Featured books will be populated here -->
+            </div>
+        </section>
+
+        <!-- Popular Genres Section -->
+        <section class="genres-section">
+            <h2 class="section-title">
+                <i class="fas fa-tags"></i>
+                Popular Genres
+            </h2>
+            <div class="genres-grid">
+                <div class="genre-card" data-genre="fiction">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Fiction</h3>
+                    <p>Imaginative stories and novels</p>
+                </div>
+                <div class="genre-card" data-genre="mystery">
+                    <i class="fas fa-search"></i>
+                    <h3>Mystery</h3>
+                    <p>Thrilling detective stories</p>
+                </div>
+                <div class="genre-card" data-genre="romance">
+                    <i class="fas fa-heart"></i>
+                    <h3>Romance</h3>
+                    <p>Love stories and relationships</p>
+                </div>
+                <div class="genre-card" data-genre="sci-fi">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Sci-Fi</h3>
+                    <p>Future worlds and technology</p>
+                </div>
+                <div class="genre-card" data-genre="fantasy">
+                    <i class="fas fa-dragon"></i>
+                    <h3>Fantasy</h3>
+                    <p>Magical worlds and adventures</p>
+                </div>
+                <div class="genre-card" data-genre="biography">
+                    <i class="fas fa-user"></i>
+                    <h3>Biography</h3>
+                    <p>Real life stories</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2 id="resultsTitle">Book Recommendations</h2>
+                <div class="results-count" id="resultsCount"></div>
+            </div>
+            <div class="books-grid" id="booksGrid">
+                <!-- Books will be populated here -->
+            </div>
+        </section>
+
+        <!-- Book Details Modal -->
+        <div class="modal" id="bookModal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <div class="modal-body" id="modalBody">
+                    <!-- Book details will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Reading List Section -->
+        <section class="reading-list-section">
+            <h2 class="section-title">
+                <i class="fas fa-bookmark"></i>
+                My Reading List
+            </h2>
+            <div class="reading-list-container" id="readingListContainer">
+                <!-- Reading list will be populated here -->
+            </div>
+        </section>
+
+        <!-- Loading Animation -->
+        <div class="loading-container" id="loadingContainer">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Searching for books...</p>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-content">
+                <i class="fas fa-search"></i>
+                <h3>No books found</h3>
+                <p>Try adjusting your search or filters</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="book-suggestions.js"></script>
+</body>
+</html> 
